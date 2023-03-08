@@ -1,0 +1,16 @@
+<div *ngIf="album$ | async as album">
+  <h2>Album Details</h2>
+
+  <div *ngIf="isEditMode">
+    <input [(ngModel)]="album.title" placeholder="Title">
+    <button (click)="saveAlbum(album)">Save</button>
+    <button (click)="cancelEdit()">Cancel</button>
+  </div>
+
+  <div *ngIf="!isEditMode">
+    <h3>{{ album.title }}</h3>
+    <button (click)="enableEditMode()">Edit</button>
+    <button (click)="goBack()">Back</button>
+    <a [routerLink]="['/albums', album.id, 'photos']">Photos</a>
+  </div>
+</div>
